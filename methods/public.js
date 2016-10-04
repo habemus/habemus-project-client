@@ -2,7 +2,7 @@
 const Bluebird = require('bluebird');
 const xhrUpload = require('xhr-upload');
 
-const errors = require('../../shared/errors');
+const errors = require('../errors');
 
 /**
  * Creates a new project

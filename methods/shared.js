@@ -2,7 +2,7 @@
 const Bluebird = require('bluebird');
 
 // own
-const errors = require('../../shared/errors');
+const errors = require('../errors');
 
 /**
  * Retrieves a project by its code
@@ -99,8 +99,6 @@ exports.getLatestVersion = function (authToken, projectIdentifier, options) {
   if (options.srcSignedURL) {
     query.srcSignedURL = options.srcSignedURL;
   }
-
-  console.log('GET LATEST VERSION!!!!')
 
   return this._authReq(
     'GET',
