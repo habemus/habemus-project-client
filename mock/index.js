@@ -1,6 +1,3 @@
-// third-party
-const Bluebird = require('bluebird');
-
 module.exports = function (mockOptions) {
 
   /**
@@ -22,7 +19,7 @@ module.exports = function (mockOptions) {
   function PrivateHProjectMock(options) {}
 
   // load methods
-  require('./methods/private')(PrivateHProjectMock, mockOptions);
+  require('./methods/public')(PrivateHProjectMock, mockOptions);
   require('./methods/shared')(PrivateHProjectMock, mockOptions);
 
   return PrivateHProjectMock;
