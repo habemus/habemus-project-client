@@ -81,10 +81,4 @@ module.exports = function (Constructor, mockOptions) {
       });
 
   };
-
-  Constructor.prototype.verifyProjectPermissions = function () {
-    return Bluebird.resolve({
-      allowed: true,
-    });
-  };
 };
