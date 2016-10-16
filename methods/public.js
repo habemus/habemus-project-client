@@ -153,11 +153,19 @@ exports.updateCode = function (authToken, identifier, targetCode, options) {
 
 /**
  * Creates a version of a project given a zipFile
- * 
+ *
+ * ATTENTION:
+ * This method is the same one as the one of the public api and should
+ * strive to keep the same signature!
+ *
+ * The only reason for the separation between the methods is due to differences
+ * in implementation.
+ *
+ * @param  {String} authToken
  * @param  {String} identifier
  * @param  {File} zipFile
  * @param  {Object} options
- * @return {QPromise}
+ * @return {XHRUpload}
  */
 exports.createVersion = function (authToken, projectIdentifier, zipFile, options) {
   if (!authToken) { return Bluebird.reject(new errors.Unauthorized()); }
