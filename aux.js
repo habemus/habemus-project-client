@@ -8,7 +8,7 @@ exports._authReq = function (method, path, options) {
 
   var URL = this.serverURI + path;
 
-  return new Bluebird((resolve, reject) => {
+  return new Bluebird(function (resolve, reject) {
     var req = superagent[method](URL);
 
     req = req.set('Authorization', 'Bearer ' + options.authToken);
@@ -21,7 +21,7 @@ exports._authReq = function (method, path, options) {
       req = req.query(options.query);
     }
 
-    req.end((err, res) => {
+    req.end(function (err, res) {
       if (err) {
         if (res && res.body && res.body.error) {
           reject(res.body.error);
