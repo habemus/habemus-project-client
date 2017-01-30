@@ -236,6 +236,37 @@ exports.restoreVersion = function (authToken, identifier, versionCode, options) 
 };
 
 /**
+ * Schedules a build for the version identified by the given versionCode
+ * 
+ * @param  {String} authToken
+ * @param  {String} identifier 
+ * @param  {String} versionCode
+ * @param  {Object} options
+ * @return {Bluebird -> ProjectVersion}
+ */
+exports.scheduleVersionBuild = function (authToken, identifier, versionCode, options) {
+  if (!authToken) { return Bluebird.reject(new errors.Unauthorized()); }
+  if (!identifier) { return Bluebird.reject(new errors.InvalidOption('identifier', 'required')); }
+  if (!versionCode) { return Bluebird.reject(new errors.InvalidOption('versionCode', 'required')); }
+
+  options = options || {};
+
+  var query = {};
+  if (options.byCode) {
+    query.byCode = 'true';
+  }
+
+  return this._authReq(
+    'POST',
+    '/project/' + identifier + '/version/' + versionCode + '/schedule-build',
+    {
+      authToken: authToken,
+      query: query,
+    }
+  );
+};
+
+/**
  * Lists the versions of a given project
  * 
  * @param  {String} authToken
